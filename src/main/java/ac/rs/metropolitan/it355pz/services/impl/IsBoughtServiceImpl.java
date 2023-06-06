@@ -23,6 +23,12 @@ public class IsBoughtServiceImpl implements IsBoughtService {
     }
 
     @Override
+    public List<IsBought> findByGameId(String gameId) {
+        return this.isBoughtRepository.findByGameId(gameId);
+    }
+
+
+    @Override
     public IsBought save(IsBought isBought) {
         return this.isBoughtRepository.save(isBought);
     }

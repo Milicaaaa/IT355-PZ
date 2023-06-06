@@ -10,11 +10,11 @@ public class IsBought {
     @Column(name = "IS_BOUGHT_ID", nullable = false)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "GAME_ID", nullable = false)
     private Game game;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "STORE_ID", nullable = false)
     private Store store;
 

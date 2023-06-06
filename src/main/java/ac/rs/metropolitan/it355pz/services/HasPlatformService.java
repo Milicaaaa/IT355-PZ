@@ -8,6 +8,8 @@ import java.util.List;
 public interface HasPlatformService {
     List<HasPlatform> findAll();
 
+    List<HasPlatform> findByGameId(String gameId);
+
     HasPlatform save(HasPlatform hasPlatform);
 
     HasPlatform update(HasPlatform hasPlatform);

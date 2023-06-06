@@ -10,11 +10,11 @@ public class HasPlatform {
     @Column(name = "HAS_PLATFORMS_ID", nullable = false)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "GAME_ID", nullable = false)
     private Game game;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "PLATFORM_ID", nullable = false)
     private Platform platform;
 

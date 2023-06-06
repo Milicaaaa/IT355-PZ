@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IsBoughtService {
     List<IsBought> findAll();
-
+    List<IsBought> findByGameId(String gameId);
     IsBought save(IsBought isBought);
 
     IsBought update(IsBought isBought);

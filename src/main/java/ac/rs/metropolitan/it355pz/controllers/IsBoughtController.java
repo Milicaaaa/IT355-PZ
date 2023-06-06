@@ -1,5 +1,6 @@
 package ac.rs.metropolitan.it355pz.controllers;
 
+import ac.rs.metropolitan.it355pz.entities.HasPlatform;
 import ac.rs.metropolitan.it355pz.entities.IsBought;
 import ac.rs.metropolitan.it355pz.services.IsBoughtService;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,11 @@ public class IsBoughtController {
     @GetMapping
     public ResponseEntity<List<IsBought>> getAll() {
         return ResponseEntity.ok(isBoughtService.findAll());
+    }
+
+    @GetMapping("/game")
+    public ResponseEntity<List<IsBought>> findByGameId(@RequestParam String gameId){
+        return ResponseEntity.ok(isBoughtService.findByGameId(gameId));
     }
 
     @PostMapping

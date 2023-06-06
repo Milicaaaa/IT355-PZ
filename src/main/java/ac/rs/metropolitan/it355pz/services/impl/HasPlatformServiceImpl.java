@@ -24,6 +24,12 @@ public class HasPlatformServiceImpl implements HasPlatformService {
     }
 
     @Override
+    public List<HasPlatform> findByGameId(String gameId) {
+        return this.hasPlatformRepository.findByGameId(gameId);
+    }
+
+
+    @Override
     public HasPlatform save(HasPlatform hasPlatform) {
         return this.hasPlatformRepository.save(hasPlatform);
     }
