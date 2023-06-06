@@ -34,6 +34,11 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    public Optional<List<Game>> findAllByGameNameContainingIgnoreCaseAndGameNameIgnoreCase(String name){
+        return gameRepository.findByGameNameContainingIgnoreCase(name);
+    }
+
+    @Override
     public Game update(Game updatedGame) {
         Game game = gameRepository.findById(updatedGame.getId()).orElseThrow(EntityNotFoundException::new);
 

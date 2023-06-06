@@ -2,6 +2,7 @@ package ac.rs.metropolitan.it355pz.controllers;
 
 import ac.rs.metropolitan.it355pz.entities.Game;
 import ac.rs.metropolitan.it355pz.services.GameService;
+import jdk.javadoc.doclet.Reporter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,11 @@ public class GameController {
     @GetMapping("/{gameId}")
     public ResponseEntity<Optional<Game>> getById(@PathVariable String gameId) {
         return ResponseEntity.ok(gameService.findById(gameId));
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<Optional<List<Game>>> getAllGames(@RequestParam("search") String search) {
+        return ResponseEntity.ok(gameService.findAllByGameNameContainingIgnoreCaseAndGameNameIgnoreCase(search));
     }
 
     @GetMapping("/nameAsc")

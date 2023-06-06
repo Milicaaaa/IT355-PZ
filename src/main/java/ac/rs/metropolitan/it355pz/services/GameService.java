@@ -11,6 +11,8 @@ public interface GameService {
     Optional<Game> findById(String id);
     Game save(Game game);
 
+    Optional<List<Game>> findAllByGameNameContainingIgnoreCaseAndGameNameIgnoreCase(String name);
+
     Game update(Game game);
 
     List<Game> saveAll(List<Game> games);

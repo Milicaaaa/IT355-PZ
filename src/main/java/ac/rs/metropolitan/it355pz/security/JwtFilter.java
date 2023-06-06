@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Set;
 
 @Component
@@ -35,6 +36,11 @@ public class JwtFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
+        if(!Collections.list(request.getHeaderNames()).contains("token")){
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         var authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
 
         if (!validAuthHeader(authHeader)) {

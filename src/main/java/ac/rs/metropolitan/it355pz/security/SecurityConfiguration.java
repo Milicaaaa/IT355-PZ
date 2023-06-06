@@ -26,41 +26,63 @@ import java.util.Arrays;
 @EnableMethodSecurity
 public class SecurityConfiguration {
 
-    public static final String AUTH_ENDPOINT = "/**";
+    public static final String AUTH_ENDPOINT = "authenticate/**";
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    @Order(Ordered.HIGHEST_PRECEDENCE)
+//    @Order(Ordered.HIGHEST_PRECEDENCE)
+//    @Bean
+//    protected SecurityFilterChain filterChain(HttpSecurity httpSecurity, JwtFilter jwtFilter) throws Exception {
+//        return httpSecurity
+//                .csrf()
+//                .disable()
+//                .cors().and()
+//                .authorizeHttpRequests()
+//                .requestMatchers("/games").permitAll()
+//                .requestMatchers(AUTH_ENDPOINT).permitAll()
+//                .anyRequest().authenticated()
+//                .and()
+//                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and()
+//                .headers()
+//                .cacheControl()
+//                .and()
+//                .and().build();
+//    }
+
     @Bean
-    protected SecurityFilterChain filterChain(HttpSecurity httpSecurity, JwtFilter jwtFilter) throws Exception {
-        return httpSecurity
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtFilter jwtFilter) throws Exception {
+        http
                 .csrf()
-                .disable()
-                .cors().and()
-                .authorizeHttpRequests()
-                .requestMatchers("/games").permitAll()
-                .requestMatchers(AUTH_ENDPOINT).permitAll()
-                .anyRequest().authenticated()
+                .and()
+                .cors()
                 .and()
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+                .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+
                 .and()
-                .headers()
-                .cacheControl()
-                .and()
-                .and().build();
+
+                .authorizeHttpRequests((requests) -> requests
+                        .requestMatchers(HttpMethod.POST, "/authenticate/login", "/authenticate/register").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
+                        .requestMatchers(HttpMethod.OPTIONS, "/authenticate/login", "/authenticate/register", "/api/**").permitAll()
+                        .anyRequest().authenticated())
+        ;
+        return http.build();
     }
 
     @Bean
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOrigin("*"); // Set the allowed origin, or you can specify specific origins
+        config.addAllowedOrigin("*");
         config.addAllowedMethod(CorsConfiguration.ALL);
-        config.addAllowedHeader("*"); // Set the allowed headers
+        config.addAllowedHeader("*");
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
