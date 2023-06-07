@@ -45,9 +45,6 @@ public class AuthenticationService implements UserDetailsService {
         System.out.println(authenticatedUser.toString());
         System.out.println(loginDTO.password());
 
-//        if (!passwordEncoder.matches(loginDTO.password(), authenticatedUser.getPassword())) {
-//            throw new NotFoundException("Password not found");
-//        }
 
         var accessToken = jwtUtil.createToken(authenticatedUser);
 
