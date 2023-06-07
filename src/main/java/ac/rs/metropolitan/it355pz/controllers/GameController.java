@@ -65,6 +65,11 @@ public class GameController {
         return ResponseEntity.ok(gameService.saveAll(games));
     }
 
+    @PutMapping
+    public ResponseEntity<Game> update(@RequestBody Game game){
+        return ResponseEntity.ok(gameService.update(game));
+    }
+
     @DeleteMapping("/{gameId}")
     public void deleteById(@PathVariable Long gameId) {
         gameService.deleteById(gameId);

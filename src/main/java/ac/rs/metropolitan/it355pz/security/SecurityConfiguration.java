@@ -41,7 +41,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers(HttpMethod.POST, "/authenticate/login", "/authenticate/register", "/api/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
-                        .requestMatchers(HttpMethod.PUT, "/api/game/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/**").permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/authenticate/login", "/authenticate/register", "/api/**").permitAll()
                         .requestMatchers(HttpMethod.DELETE, "/**").permitAll()
                         .anyRequest().authenticated());
