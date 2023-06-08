@@ -31,6 +31,19 @@ public class Game {
     @Column(name = "REVIEW_COUNT")
     private String reviewCount;
 
+    public Game() {
+    }
+
+    public Game(Long id, String gameName, String backgroundImage, String rating, String descriptionRaw, String suggestionCount, String reviewCount) {
+        this.id = id;
+        this.gameName = gameName;
+        this.backgroundImage = backgroundImage;
+        this.rating = rating;
+        this.descriptionRaw = descriptionRaw;
+        this.suggestionCount = suggestionCount;
+        this.reviewCount = reviewCount;
+    }
+
     public Long getId() {
         return id;
     }

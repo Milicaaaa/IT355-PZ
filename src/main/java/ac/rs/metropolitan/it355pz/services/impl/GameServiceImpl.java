@@ -24,7 +24,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Optional<Game> findById(String id){
+    public Optional<Game> findById(String id) {
         return this.gameRepository.findById(Long.valueOf(id));
     }
 
@@ -34,7 +34,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Optional<List<Game>> findAllByGameNameContainingIgnoreCaseAndGameNameIgnoreCase(String name){
+    public Optional<List<Game>> findAllByGameNameContainingIgnoreCaseAndGameNameIgnoreCase(String name) {
         return gameRepository.findByGameNameContainingIgnoreCase(name);
     }
 

@@ -2,9 +2,7 @@ package ac.rs.metropolitan.it355pz.controllers;
 
 import ac.rs.metropolitan.it355pz.entities.Game;
 import ac.rs.metropolitan.it355pz.services.GameService;
-import jdk.javadoc.doclet.Reporter;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

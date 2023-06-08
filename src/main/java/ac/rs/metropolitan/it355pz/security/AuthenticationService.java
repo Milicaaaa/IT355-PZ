@@ -52,8 +52,6 @@ public class AuthenticationService implements UserDetailsService {
     }
 
 
-
-
     public User save(User user) {
         User newUser = new User();
         newUser.setFirstname(user.getFirstname());
